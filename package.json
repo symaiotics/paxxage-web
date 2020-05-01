@@ -1,0 +1,23 @@
+{
+  "name": "remcasts",
+  "version": "1.0.0",
+  "description": "The remcasts.com base application with HTML and Node backend working together",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://symaiotics@dev.azure.com/symaiotics/Remcasts/_git/remcasts_node"
+  },
+  "keywords": [
+    "remcasts"
+  ],
+  "author": "Janak Alford",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

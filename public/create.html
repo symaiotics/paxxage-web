@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create a Remcast Account</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="css/bulma/bulma.min.css">
+<style>
+/* Style Overrides */
+
+.navbar-burger
+{
+  position:absolute;
+  right:0px;
+}
+
+</style>
+
+    <link rel="icon" href="favicon.ico">
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <div class=" splash-back ">
+                
+      <nav class="navbar"><div class="container">
+          <div class="navbar-brand" style = "width:150px">
+            <img src="img/remlogo2.svg"  style = "height:50px;margin:2px 0 2px 5px" alt=""> 
+            
+            <a class="navbar-item" href="#" style = "color:#191654;font-weight:600;">Remcasts</a><a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
+          <div class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item" href="index.html">Home</a>
+    
+            </div>
+            
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+
+              <div class="buttons"><a class="button is-primary" href="signin.html">Sign In</a></div>
+
+
+              <!-- <input class="input" type="text" placeholder="Search"></div> -->
+          </div>
+        </div>
+
+
+        </div>
+      </nav>
+
+
+         
+      <section id = "home" class="hero"><div class="hero-body">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column is-4 is-offset-1">
+              <h1 class="title ">Create an account</h1>
+              <p class="subtitle">Secure and anonymous</p>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    </div>
+       
+      <section  class="section">
+        <div class="container">
+          <div class="columns is-centered">
+
+
+            <div class="column is-5">
+              <h4 class="title is-spaced is-4" data-config-id="header2">Remcasts uses anonymous secure logins.</h4>
+              <p class="subtitle" data-config-id="description">No username, no password, no email links. <br/>Just an alias and a key.
+                
+                <br/><br/>Your key gives you access to your account.<br/> <b>It cannot be recovered if it is lost.</b></p>
+
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-primary is-fullwidth" data-config-id="signin">Generate a Key Pair</button>
+                  </div>
+                </div>
+                <p class = "block">                
+                This key is generated in your browser (you can disconnect from the internet).<br/><br/>However, we strongly recommend you use a tool like OpenSSL to generate your own. It is generally best not to trust any website that provides your keys for you.
+              </p>
+                <!-- <button class="button is-primary is-fullwidth" data-config-id="signup">request</button> -->
+            </div>
+
+            <div class="column is-5  is-offset-1">
+              <h4 class="title is-4" data-config-id="header1">Create an Account.</h4>
+              <p class = "block">
+
+                We've generated you an alias. <br/>If you don't like it, randomly generate another one.<br/> 
+
+                <br/>
+                If you have an RSA 4096 key, please enter the Public Key.<br/>
+                If you do not, you can generate one.<br/> 
+
+              </p>
+              <form>
+
+                <div class="field is-grouped">
+                  <div class="control is-expanded">
+                    <input class="input" type="text" disabled placeholder="Your alias" required="required">
+                  </div>
+                  <div class="control">
+                    <button class="button is-primary" type="submit">New Alias</button>
+                  </div>
+                </div>
+
+
+                <div class="field">
+                  <div class="control">
+                    <textarea  rows="4" class="input" style = "min-height:100px;"  placeholder="Enter your RSA public key."></textarea>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <textarea disabled  rows="4" class="input"  style = "min-height:100px;"  placeholder="Your RSA private key."></textarea>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-primary is-fullwidth" data-config-id="signin">Create an Account</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+        
+      <footer class="footer">
+        <div class="container has-text-centered">
+      
+          <div class="columns is-centered">
+         
+            <div class="column is-6">
+      
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-48x48"><img src="img/remlogo2.svg" alt="" data-config-id="image"></figure>
+                </div>
+              </div>
+      
+              <h2 class="title is-4"><a href="#" data-config-id="brand">Remcasts.com</a></h2>
+              <p class="block" data-config-id="description">Remcasts is built on the Symaiotics platform.<br/>info@remcasts.com</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+   
+  </body>
+  
+  <style>
+
+.card
+{
+  border-radius:10px;
+  background:#eee;
+  -webkit-transition-duration: 300ms;
+    -moz-transition-duration: 300ms;
+    -o-transition-duration: 300ms;
+    transition-duration: 300ms;
+
+}
+
+.card:hover {
+  /* transform: scale(1.05);  */
+  transform:  rotateY(-15deg) rotateZ(3deg); 
+  /* transform: scale(1.02) rotate(0deg);  */
+  background-color:rgb(255, 255, 255); 
+  border-radius:10px;
+  -webkit-box-shadow: -7px 10px 22px -12px rgba(0,0,0,1);
+-moz-box-shadow: -7px 10px 22px -12px rgba(0,0,0,1);
+box-shadow: -7px 10px 22px -12px rgba(0,0,0,1);
+
+}
+
+.splash-back
+{
+  
+background: #43C6AC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+.backupcolours
+{
+  
+background: #E8CBC0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #636FA4, #E8CBC0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #636FA4, #E8CBC0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background: #3494E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background: #F3904F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3B4371, #F3904F);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3B4371, #F3904F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background: #3a6186;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #89253e, #3a6186);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #89253e, #3a6186); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background: #ffd89b;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #19547b, #ffd89b);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #19547b, #ffd89b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background: #ffd89b;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #19547b, #ffd89b);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #19547b, #ffd89b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background: #2C3E50;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #FD746C, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #FD746C, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+background: #2C3E50;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FD746C, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FD746C, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.hero
+ {
+  color:white;
+
+  /* background-image: url('https://images.unsplash.com/photo-1567596296091-0a257a028e72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80') */
+ }
+
+.hero .title{
+   color:white;
+   font-size:3em
+ }
+
+ .hero  .subtitle
+
+ {
+   color:white;
+ }
+
+ #aiosphereplanet
+ {
+
+   -webkit-animation: stroke-pulse 10s infinite;
+  -moz-animation: stroke-pulse 10s infinite;
+  animation: stroke-pulse 10s infinite; 
+ } 
+
+/* 
+ #rockettrail
+ {
+
+   -webkit-animation: stroke-pulse2 30s infinite;
+  -moz-animation: stroke-pulse2 30s infinite;
+  animation: stroke-pulse2 30s infinite; 
+ }  */
+
+
+
+@keyframes stroke-pulse {
+  0%   {stroke-width:1px;stroke:#43C6AC}
+  50%  {stroke-width:15px;stroke:#FFF}
+  100% {stroke-width:1px;stroke:#43C6AC}
+}
+
+
+
+/* 
+
+@keyframes stroke-pulse2 {
+  0%   {stroke-width:3px;stroke:rgb(91, 117, 165)}
+  50%  {stroke-width:8px;stroke:#a62}
+  100% {stroke-width:3px;stroke:rgb(91, 117, 165)}
+} */
+
+
+  </style>
+</html>
+
