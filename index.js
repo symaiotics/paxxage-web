@@ -15,15 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //To parse json data
 app.use(bodyParser.json())
 
-
-//custom middleware
-// var extractToken = require('./middleware/validation').extractToken;
-// app.use(extractToken);
-// var LoggerMiddleware = require('./middleware/validation').LoggerMiddleware;
-// app.use(LoggerMiddleware);
-
-
-
 //static sites
 app.use(express.static('public')); 
 app.use(express.static('public/forge')); 
