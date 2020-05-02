@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Paxxage Desktop - Cryptographic Toolset</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="./css/bulma/bulma.min.css">
+    <link rel="stylesheet" href="./css/fa-all.css">
+    <!-- <link rel="stylesheet" href="./css/buefy.min.css"> -->
+<style>
+/* Style Overrides */
+
+.navbar-burger
+{
+  position:absolute;
+  right:0px;
+}
+
+</style>
+
+    <link rel="icon" href="favicon.ico">
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+
+
+    <div id="app">  <!-- Start of Vue App-->
+    <div class=" splash-back ">
+                
+      <nav class="navbar"><div class="container">
+          <div class="navbar-brand" style = "width:150px">
+            <img src="img/paxxageLogo.svg"  style = "height:50px;margin:2px 0 2px 5px" alt=""> 
+            
+            <a class="navbar-item" href="#" style = "color:#191654;font-weight:600;">Paxxage</a><a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
+          <div class="navbar-menu">
+            <div class="navbar-start">
+<!-- 
+             
+              <a class="navbar-item" href="#generate">Generate Keys</a>
+              <a class="navbar-item" href="#sign">Sign</a>
+              <a class="navbar-item" href="#verify">Verify</a>
+              <a class="navbar-item" href="#encrypt">Encrypt</a>
+              <a class="navbar-item" href="#decrypt">Decrypt</a>
+              <a class="navbar-item" href="#signin">Sign In</a>
+              <a class="navbar-item" href="#about">About</a> -->
+              <!-- <a class="navbar-item" href="service.html">Service API</a> -->
+            </div>
+            <div class="navbar-end">
+              <div class="navbar-item">
+
+                <!-- <div class="buttons"><a class="button is-primary" href="desktop.html">Download Desktop App</a></div> -->
+
+                <!-- <input class="input" type="text" placeholder="Search"></div> -->
+            </div>
+          </div>
+        </div>
+      </nav>
+                
+      <section id = "home" class="hero"><div class="hero-body">
+          <div class="container">
+            <div class="columns is-vcentered">
+              <div class="column is-5 is-offset-1">
+                <!-- <h2>{{message}}</h2> -->
+                <h1 class="title ">Paxxage Desktop</h1>
+                <p class="subtitle">Cryptographic Studio</p>
+                <p> An all-in-one cryptographic toolset for data management and secure, anonymous web interactions.</p>
+
+              </div>
+              <div class="column is-6">
+
+                  <img src = "img/studio.svg" style = " padding-right:100px;width:100%;height:400px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div> <!-- End of Splash Back -->
+
+    <div class="container is-fluid ">
+  
+      <section id = "about" data-section-id="6" data-component-id="29e6_4_05_awz" data-category="how-it-works" class="section">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column is-6 is-offset-3">
+              <h2 class="title" data-config-id="header" style = "text-align:center">Desktop Application</h2>
+              <h3 class="title is-6" data-config-id="subheader">Paxxage Desktop provides a critical set of crypto tools to build a secure digital identity.</h3>
+              <p   data-config-id="description">This open source utility enables anyone to manage their keys, protect the files, communications, and login to secure online and anonymous services.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+       
+      <section data-section-id="10" data-component-id="29e6_4_07_awz" data-category="how-it-works" class="section">
+        <div class="container has-text-centered">
+          <h2 class="title is-spaced" data-config-id="header">Paxxage Desktop Features</h2>
+          <div class="columns" data-config-id="how_07">
+            <div class="column is-3">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_vault_9cmw.svg" alt=""></figure>
+                </div>
+              </div>
+              <h4 class="title is-4">Key Pair Wallet</h4>
+              <p>Manage all of your private and public encryption keys locally. </p>
+            </div>
+            <div class="column is-3">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_two_factor_authentication_namy.svg" alt=""></figure>
+                </div>
+              </div>
+              <h4 class="title is-4">Secure Sign-Ins</h4>
+              <p>Use Paxxage to sign in to compatible services using private keys. You can also adapt Paxxage for your own secure websites.</p>
+            </div>
+            <div class="column is-3">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_authentication_fsn5.svg" alt=""></figure>
+                </div>
+              </div>
+              <h3 class="title is-4">Validate Signatures </h3>
+              <p>Validate signatures provided by others. Know that you're talking to the person you think. </p>
+            </div>
+
+            <div class="column is-3">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_emails_6uqr.svg" alt=""></figure>
+                </div>
+              </div>
+              <h3 class="title is-4">Write Encrypted Messages </h3>
+              <p>Pre-encrypt your messages to eliminate snopping by service providers or the possibility of interception.</p>
+            </div>
+
+          </div>
+ 
+
+          <div class="columns" data-config-id="how_07">
+
+            <div class="column is-3">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_security_o890.svg" alt=""></figure>
+                </div>
+              </div>
+              <h4 class="title is-4">Encrypt and Backup</h4>
+              <p>Encrypt your files before deploying to Cloud backup. Decrypt files that are shared by your network.</p>
+            </div>         
+
+            <div class="column is-3">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_profile_6l1l.svg" alt=""></figure>
+                </div>
+              </div>
+              <h4 class="title is-4">Manage Anonymous Contacts</h4>
+              <p>Manage an inventory of public keys from other known or anonymous contacts. Manage your connections while maintaining anonymity.</p>
+            </div>
+
+            <div class="column is-3">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_progressive_app_m9ms.svg" alt=""></figure>
+                </div>
+              </div>
+              <h4 class="title is-4">Open Source</h4>
+              <p>Clone the repository to build the Electron.js Desktop service. Audit and validate all code or adapt to meet your needs.</p>
+            </div>         
+
+            <div class="column is-3  ">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_email_capture_x8kv.svg" alt=""></figure>
+                </div>
+              </div>
+              <h4 class="title is-4">Receive Anonymous Email <a href = "https://mexxage.com" target = "_blank" >Mexxages</a> </h4>
+              <p>Receive emails with complete anonymity using the <a href = "https://mexxage.com" target = "_blank">Mexxage</a> service provider.</p>
+            </div>
+
+          </div>
+
+
+          </div><br/>
+          
+        </div>
+      </section>
+
+               
+      <section data-section-id="1" data-component-id="29e6_9_04_awz" data-category="faqs" class="section">
+        <div class="container">
+          <h2 class="title has-text-centered" data-config-id="header">Frequently Asked Questions</h2>
+          <div class="columns is-multiline" data-config-id="faq" style = "padding:0px 100px 0px 100px">
+            <div class="column is-6">
+              <h3 class="title is-4">What is the Paxxage Studio built with?</h3>
+              <p>Paxxage uses the Electron.js app to build and compile a fast and light-weight desktop application. Forge and OpenSSL are the integrated crypto platforms. NeDB is used to manage your keys and ciphers.</p>
+            </div>
+            <div class="column is-6">
+              <h3 class="title is-4">Why use RSA key pairs for login?</h3>
+              <p> Key pairs allow you to anonymously and securely sign into services without email, username, password, or any other identifying marker. There is no email provider monitoring the services you sign up for. You have freedom to use internet services with anonymity.</p>
+            </div>
+            <div class="column is-6">
+              <h3 class="title is-4">Paxxage is a key wallet. How are my keys kept safe?</h3>
+              <p>That is up to you. We recommend that you keep your Paxxage data split between two FIPS 140-3 USB encrypted storage devices. We built the Desktop app to do this natively. The security of any protocol has as much, or more, to do with human usage as it does the cryptographic protocols used. </p>
+            </div>
+            <div class="column is-6">
+              <h3 class="title is-4">Why RSA 4096 and 8192 bit encryption when the world is still using RSA 2048.</h3>
+              <p>1)<a href= "https://en.wikipedia.org/wiki/Key_size"> RSA 2048 is only rated to 2030.</a> Our goal is that your crypto lasts your lifetime. <br/>2) <a href = "https://en.wikipedia.org/wiki/Moore%27s_law">Moore's Law</a> is placing the growth of processing speed on an exponential curve. <br/>3) <a href=  "https://en.wikipedia.org/wiki/Quantum_cryptography">Quantum computing</a> -might- impact crypto so let's not make it too easy. </p>
+            </div>
+            <div class="column is-6">
+              <h3 class="title is-4">What is Symaiotics?</h3>
+              <p>Paxxage is part of the Symaiotics platform. Symaiotics is working to redefine our individual relationship with technologies to be more positive, healthy, and productive. We are taking a human-centric approach to technology evolution. Strong crypto is the future of digital communications and computing, so Paxxage was a necessity to help launch this platform. </p>
+            </div>
+            <div class="column is-6">
+              <h3 class="title is-4">Is Paxxage Open Source?</h3>
+              <p>Yes, Paxxage Studio is released under the MIT License.</p>
+            </div>
+ 
+          </div>
+        </div>
+      </section>
+
+
+      
+      <section data-section-id="3" data-component-id="29e6_3_01_awz" data-category="features" class="section">
+        <div class="container">
+
+          <h2 class="title has-text-centered" data-config-id="header">Multi-platform Desktop Application</h2>
+          <p class="subtitle is-6 has-text-centered">We've made it easy to do all your identity management and crypto together.</p>
+
+          
+          <div class="columns" data-config-id="features_01">
+            <div class="column is-3">
+              <h4 class="title is-spaced is-4">Open Source Code (Coming May 2020)</h4>
+              <p class="subtitle is-6">Download code and compile your own app.</p> <div class="buttons"><a class="button is-primary" href="#">Get the GitHub Code</a></div>
+            </div>
+            <div class="column is-3">
+              <h4 class="title is-spaced is-4">Windows (Coming Soon)</h4>
+              <p class="subtitle is-6">Download the Windows 64 Bit Package.</p> <div class="buttons"><a class="button is-primary" href="#">Download Windows</a></div>
+            </div>
+            <div class="column is-3">
+              <h4 class="title is-spaced is-4">Mac (Coming Soon)</h4>
+              <p class="subtitle is-6">Download the Mac version.</p><div class="buttons"><a class="button is-primary" href="#">Download Mac</a></div>
+            </div>
+            <div class="column is-3">
+              <h4 class="title is-spaced is-4">Linux (Coming Soon)</h4>
+              <p class="subtitle is-6">Download the Linux Build</p><div class="buttons"><a class="button is-primary" href="#">Download Linux</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+         
+
+
+
+
+<footer data-section-id="19" data-component-id="29e6_11_10_awz" data-category="footers" class="footer">
+  <div class="container has-text-centered">
+    <div class="level">
+      <div class="level-item">
+        <figure class="image is-48x48"><img src="img/paxxageLogo.svg" alt="" data-config-id="image"></figure>
+      </div>
+    </div>
+    <div class="columns  is-8">
+
+  
+ 
+      <div class="column is-6 is-offset-3">
+        <h2 class="title is-4"><a href="#" data-config-id="brand">Paxxage.com</a></h2>
+        <p class="block" data-config-id="description">Paxxage is part of the Symaiotics platform.</p>
+        <p class="block" data-config-id="description">info@symaiotics.com</p>
+      </div>
+    </div>
+  
+  </div>
+</footer>
+
+
+
+
+    </div>
+  </div> <!-- End of Vue App-->
+  </body>
+
+  
+  <script src="./js/vue@2.6.11.js"></script>
+
+  <script>
+  </script>
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+     
+
+    },
+
+    mounted()
+    {
+      
+
+    },
+    methods: {
+ 
+
+  }
+
+  })
+
+</script>
+  
+  <style>
+a{
+  
+color:#F3904F
+}
+
+.button.is-primary
+{
+background-color:#F3904F;
+}
+ 
+
+.splash-back
+{
+ background: #F3904F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3B4371, #F3904F);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3B4371, #F3904F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+ 
+.hero
+ {
+  color:white;
+
+  }
+
+.hero .title{
+   color:white;
+   font-size:3em
+ }
+
+ .hero  .subtitle
+
+ {
+   color:white;
+ }
+  
+
+
+
+  </style>
+</html>
+
