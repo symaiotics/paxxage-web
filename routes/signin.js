@@ -83,6 +83,7 @@
             //remove any new lines or blank spaces from the text. This messes with future queries.
             alias.trim();
             alias.replace(/\r?\n|\r/g, "");
+            alias.replace(/\n/g, "");
             //check to see if there is a collision
             matchingAccountsCount = await Accounts.find({alias:alias}).exec().length;
         }
