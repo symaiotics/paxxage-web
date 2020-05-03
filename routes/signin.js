@@ -147,6 +147,7 @@
 
         //verify if the alias provided exists
         var availableAlias = await Accounts.find({alias:alias, publicKey: { $ne: null } , momentDeleted:null}).exec();
+        console.log(availableAlias)
         if(!availableAlias.length)
         {
             res.status(401).send({code:-1, message:"Unauthorized request."});
@@ -175,6 +176,7 @@
         var signature64 = req.body.signature64;
 
         var verifySession = await Sessions.find({requestToken:requestToken, publicKey: { $ne: null } , momentDeleted:null}).exec();
+        console.log(verifySession)
         if(verifySession.length)
         {
             //do some Forge Crypto verification
@@ -207,7 +209,7 @@
                      iat: momentVerified.getTime(), //issue time
                      nbf: momentVerified.getTime() - (5*1000), //dont allow anyone to call it 5 minutes in the past
                      features:["poems"],
-                     
+
                     }, paxxagePrivatePem, { algorithm: 'RS256'});
                 var decoded = jwt.decode(token, {complete: true});
     
@@ -222,7 +224,7 @@
             }
             else
             {
-                res.status(401).send({code:-1, message:"Unauthorized request."});
+                res.status(401).send({code:-1, message:"Unauthorized request. Verification failed."});
             }
             //if the signature checks out generate the JWT
 
