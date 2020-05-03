@@ -4,7 +4,7 @@ This repository is published to provide access to the code of the https://paxxag
 
 The goal is this site is to make simple cryptographic functions easy for the average user. All computations occur in the browser. Nothing is transmitted, and no data is stored. There are no cookies implemented. 
 
-This repository is intended to build confidence in the tools and to provide a basis for other developers to provide similar tools and make crypto-based internet communications the global standard.
+This repository is intended to build confidence in the tools and to provide a basis for other developers to provide similar tools and make crypto-based internet communications the global standard. The signin.html page provides a demo interface for testing the cryptographic functions. JSON Web Tokens (JWTs) are introduced to provide a means of creating and validating sessions. 
 
 There is another repository in the works for the Paxxage Desktop app which is under construction. It is based within the Electron.js framework and uses Node.js functions to accelerate and enhance these processes.
 

@@ -317,7 +317,7 @@
           <div class="columns  is-8">
 
 
-            <template v-if = "testJwt.code == -1">
+            <template v-if = "jwtTest.code == -1">
               <div class="column is-5 is-offset-1">
                 <h4 class="title is-4" data-config-id="header1">Error in your request</h4>
                 <p>{{testJwt.message}}</p>
@@ -325,7 +325,7 @@
             </template>
 
 
-            <template v-if = "claimResult.code == 0">
+            <template v-if = "jwtTest.code == 0">
               <div class="column is-5 is-offset-1">
                 <h4 class="title is-4" data-config-id="header1">Run a test command.</h4>
               
@@ -339,7 +339,7 @@
             </template>
 
             
-            <template v-if = "claimResult.code == 1">
+            <template v-if = "jwtTest.code == 1">
               <div class="column is-5 is-offset-1">
                 <h4 class="title is-4" data-config-id="header1">Success!</h4>
                 <p> You've received a message from the service.</p>
@@ -439,9 +439,9 @@
       claimResult:{code:0, message:""},
       
       //Sign In Management
-      obSignIn : {privateKey:"-----BEGIN RSA PRIVATE KEY-----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-----END RSA PRIVATE KEY-----",
+      obSignIn : {privateKey:"",
       password:"", 
-      alias:"238.disobedient.clans",  
+      alias:" ",  
       requestToken:"", 
       signature64:"",  
       result:{code:0, message:""}, 
@@ -449,7 +449,7 @@
       jwtDecoded:null,
     },
 
-    testJwt:
+    jwtTest:
     {
       code:0,
       message:"",
