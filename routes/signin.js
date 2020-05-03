@@ -235,10 +235,7 @@
             {
                 res.status(401).send({code:-1, message:"Unauthorized request. Verification failed."});
             }
-          
-
         }
-
     });
 
 
