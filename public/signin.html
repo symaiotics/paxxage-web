@@ -441,7 +441,7 @@
       //Sign In Management
       obSignIn : {privateKey:"",
       password:"", 
-      alias:" ",  
+      alias:"",  
       requestToken:"", 
       signature64:"",  
       result:{code:0, message:""}, 
@@ -616,15 +616,16 @@
 
       copyValue(value)
       {
-        const el = document.createElement("textarea");
+        const el = document.createElement("input");
+        el.setAttribute('type', 'text')  ;
         el.value =value;
         document.body.appendChild(el);
-        el.setSelectionRange(0, el.selectionEnd)();
+        el.select()
         document.execCommand("copy");
         document.body.removeChild(el);
       }
  
-
+ 
 
   }
 
