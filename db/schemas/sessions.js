@@ -9,8 +9,8 @@ var sessionSchema = new mongoose.Schema({
     publicKey:String, //it is redundant to keep this here, but might make things easier whenever the PubKey is needed
     signature64:String, //the signature that was returned in base64
     momentCreated:Date, //the moment the session was created
-    momentValidated:Date, // the moment the session was validated through verification of the signature
-    momentDeleted:Date, //the moment the session was deleted
+    momentVerified:Date, // the moment the session was validated through verification of the signature
+    momentDeleted:Date, //the moment the session was deleted / ended
 
     jwt:{}, //the JWT associated with the session
     jwtDecoded:{}, //the JWT associated with the session
