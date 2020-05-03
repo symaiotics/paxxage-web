@@ -81,9 +81,12 @@
             var aliasRandomAdjective = adjectiveArray[getRandomInt(adjectiveArray.length-1)];
             var alias = aliasRandomNumber + "." + aliasRandomAdjective +  "." +  (aliasRandomNumber == 1 ?  aliasRandomNoun.singular : aliasRandomNoun.plural) ;
             //remove any new lines or blank spaces from the text. This messes with future queries.
+            console.log("Alias1", alias);
             alias.trim();
             alias.replace(/\r?\n|\r/g, "");
             alias.replace(/\n/g, "");
+            alias.replace(/[\x00-\x1F\x7F-\x9F]/g, ""); //all hidden characters
+            console.log("Alias2", alias);
             //check to see if there is a collision
             matchingAccountsCount = await Accounts.find({alias:alias}).exec().length;
         }
