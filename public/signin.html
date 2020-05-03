@@ -619,7 +619,7 @@
         const el = document.createElement("textarea");
         el.value =value;
         document.body.appendChild(el);
-        el.select();
+        el.setSelectionRange(0, el.selectionEnd)();
         document.execCommand("copy");
         document.body.removeChild(el);
       }
