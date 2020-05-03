@@ -80,7 +80,9 @@
             var aliasRandomNoun = nounObjArray[getRandomInt(nounObjArray.length-1)];
             var aliasRandomAdjective = adjectiveArray[getRandomInt(adjectiveArray.length-1)];
             var alias = aliasRandomNumber + "." + aliasRandomAdjective +  "." +  (aliasRandomNumber == 1 ?  aliasRandomNoun.singular : aliasRandomNoun.plural) ;
-            
+            //remove any new lines or blank spaces from the text. This messes with future queries.
+            alias.trim();
+            alias.replace(/\r?\n|\r/g, "");
             //check to see if there is a collision
             matchingAccountsCount = await Accounts.find({alias:alias}).exec().length;
         }
