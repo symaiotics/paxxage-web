@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Paxxage - Sign In Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="./css/bulma/bulma.min.css">
+    <link rel="stylesheet" href="./css/fa-all.css">
+    <!-- <link rel="stylesheet" href="./css/buefy.min.css"> -->
+<style>
+/* Style Overrides */
+
+.navbar-burger
+{
+  position:absolute;
+  right:0px;
+}
+
+</style>
+
+    <link rel="icon" href="favicon.ico">
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+
+
+    <div id="app">  <!-- Start of Vue App-->
+    <div class=" splash-back ">
+                
+      <nav class="navbar"><div class="container">
+          <div class="navbar-brand" style = "width:150px">
+            <img src="img/paxxageLogo.svg"  style = "height:50px;margin:2px 0 2px 5px" alt=""> 
+            
+            <a class="navbar-item" href="/" style = "color:#191654;font-weight:600;">Paxxage</a><a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
+          <div class="navbar-menu">
+            <div class="navbar-start">
+
+             
+              <a class="navbar-item" href="#alias">Get Alias</a>
+             
+              <a class="navbar-item" href="#signin">Sign In</a>
+              <a class="navbar-item" href="#test">Test JWT</a>
+              <a class="navbar-item" href="#signout">Sign Out</a>
+              <a class="navbar-item" href="#faq">FAQ</a>
+              <!-- <a class="navbar-item" href="service.html">Service API</a> -->
+            </div>
+ 
+        </div>
+      </nav>
+                
+      <section id = "home" class="hero"><div class="hero-body">
+          <div class="container">
+            <div class="columns is-vcentered">
+              <div class="column is-5 is-offset-1">
+                <!-- <h2>{{message}}</h2> -->
+                <h1 class="title ">Demo Sign In</h1>
+                <p class="subtitle">This example page demonstrates how the account creation, sign in, authorization, and sign out process works with crypto. No emails or passwords.</p>
+                <p> Note: Data on this page is transmitted to the server.<br/><br/><a href="https://github.com/symaiotics/paxxage-web">Read how it works on GitHub.</a></p>
+
+              </div>
+              <div class="column is-6">
+
+                  <img src = "img/undraw_booking_33fn.svg" style = "margin-left:auto;margin-right:auto;width:100%;height:400px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div> <!-- End of Splash Back -->
+
+    <div class="container is-fluid ">
+ 
+ 
+
+      <section id = "alias" data-section-id="14" data-component-id="29e6_12_04_awz" data-category="sign-in" class="section">
+        <div class="container">
+          <div class="columns  is-8">
+
+
+            <template v-if = "claimResult.code == -1">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Error Creating Account</h4>
+                <p> Please try again in a few seconds </p>
+                </div>
+            </template>
+
+
+            <template v-if = "claimResult.code == 0">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Create an Account</h4>
+              
+                <label>Alias</label>
+                <div class="field is-grouped">
+                  <div class="control is-expanded">
+                    <input disabled class="input" type="text" v-model = "alias" placeholder="Your Alias">
+                  </div>
+
+                  <div class="control">
+                    <button @click = "getAlias" class="button is-primary" type="submit">New Alias</button>
+                  </div>
+                </div>
+                  
+                <label>Public Key</label>
+                  <div class="field ">
+                    <div class="control is-expanded">
+                      <textarea v-model = "publicKey" rows="3" style = "min-height:60px" class="input"  placeholder="Public key" required="required"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="control">
+                      <button @click = "claimAlias" class="button is-primary is-fullwidth" data-config-id="signin">Create Account</button>
+                    </div>
+                  </div>
+              </div>
+            </template>
+
+            
+            <template v-if = "claimResult.code == 1">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Success!</h4>
+                <p> You've successfully claimed this alias.</p>
+               
+                <div class="field is-grouped">
+                  <div class="control is-expanded">
+                    <input id = "aliasConfirmed" disabled class="input" type="text" v-model = "alias" placeholder="Your Alias">
+                  </div>
+
+                  <div class="control">
+                    <button @click = "copyValue(alias)" class="button is-success" type="submit">Copy to Clipboard</button>
+                  </div>
+
+                </div>
+
+
+                <div class="field  ">
+                <div class="control">
+                  <button @click = "getAlias" class="button is-primary" type="submit">Get Another Alias</button>
+                </div>
+              </div>
+            </template>
+
+            <div class="column is-6">
+              <!-- <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_safe_bnk7.svg" alt=""></figure>               -->
+             
+              <p class="subtitle" data-config-id="description">
+                <b>Simple Account Creation</b>
+                <br/><br/>
+                How it works:
+                <ul class="block">
+                  <li>• The system generates an alias. This is the equivalent to your username. </li>
+                  <li>•  You don't get to choose it to keep things anonymous, but you can generate a random one till you find one you like.</li>
+                  <li>• You claim the alias by providing the system a <a href = "/#generate">public key.</a> </li>
+                  <li>•  This public key is the cornerstone of your relationship with the system. This is how it validates your identity, encrypts your system data, and sends you private messages.</li>
+<br/>
+                  <li>• That's it. You have an account.</li>
+
+                </ul>
+                
+                </p>
+
+               
+            
+            
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id = "signin" data-section-id="14" data-component-id="29e6_12_04_awz" data-category="sign-in" class="section">
+        <div class="container">
+          <div class="columns  is-8">
+
+
+            <template v-if = "obSignIn.result.code  == -1">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Error Signing In</h4>
+                <p> Please try again </p>
+                </div>
+            </template>
+
+
+            <template v-if = "obSignIn.result.code == 0">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Sign In</h4>
+              
+                <label>Alias</label>
+                <div class="field">
+                  <div class="control is-expanded">
+                    <input class="input" type="text" v-model = "obSignIn.alias" placeholder="Your Alias">
+                  </div>
+                </div>
+                  
+                <label>Private Key</label>
+                  <div class="field ">
+                    <div class="control is-expanded">
+                      <textarea v-model = "obSignIn.privateKey" rows="3" style = "min-height:60px" class="input"  placeholder="Private key" required="required"></textarea>
+                    </div>
+                  </div>
+
+                      
+                  <div v-if = "obSignIn.privateKey.includes('ENCRYPTED')">Your key is encrypted, please enter the password.
+                    <label>Password<br/></label>
+                    <div class="field">
+                      <div class="control is-expanded">
+                        <input class="input" type="text" v-model = "obSignIn.password" placeholder="Key password">
+                      </div>
+                    </div>
+                    </div>
+                    
+                 
+                  <div class="field">
+                    <div class="control">
+                      <button @click = "signInService" class="button is-primary is-fullwidth" data-config-id="signin">Sign In</button>
+                    </div>
+                  </div>
+
+                  <p> Note: Private key is used here <b>just for the demo</b> to generate a signature. It is not transmitted to the server, but used to sign a login session request. 
+                    <br/> A crypto utility like <a href=  "desktop.html"> Paxxage Studio </a> would be used to do this automatically in production.</p>
+
+
+              </div>
+            </template>
+
+            
+            <template v-if = "obSignIn.result.code == 1">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Success!</h4>
+                <p> You've successfully signed in.</p>
+                <p> You now have an access token called a JWT which will provide you access to this service for the rest of your session.</p>
+                <p> You can optionally save this JWT to a <a href = "https://www.w3schools.com/jsref/prop_win_localstorage.asp"> cookie </a>. This will preserve the token even if you refresh the page.</p>
+
+                <button @click = "saveJwt" class="button is-primary is-fullwidth" data-config-id="signin">Save the JWT to a cookie</button><br/>
+                <button @click = "clearCookies" class="button is-primary is-fullwidth" data-config-id="signin">Clear all cookies</button>
+          
+            </template>
+
+            <div class="column is-6">
+              <!-- <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_safe_bnk7.svg" alt=""></figure>               -->
+             
+              <p class="subtitle" data-config-id="description">
+                <b>Sign In with a Signature</b>
+                <br/><br/>
+                How it works:
+                <ul class="block">
+                  <li>• You request approval to sign-in. <i class="fas fa-arrow-circle-right"></i>  </li>
+                  <li>• <i class="fas fa-arrow-circle-left"></i>  The service provides you a temporary login token.</li>
+                 
+                  <div v-if = "obSignIn.requestToken"> 
+                    <label style = "font-size:.8em;font-weight:600; color:#622;">This is the request token.<br/></label>
+                    <div style = "background-color:#eee;padding:5px;border-radius:5px;border-style:solid;border-width:1px; border-color:#ccc; overflow-wrap: break-word;">
+                      {{obSignIn.requestToken  }}
+                      </div>
+                  </div>
+
+                  <li>• You sign the login code with your private key.  <i class="fas fa-arrow-circle-right"></i> </li>
+                 
+                  <div v-if = "obSignIn.signature64"> 
+                    <label style = "font-size:.8em;font-weight:600; color:#622;">This your signature on the token (truncated).<br/></label>
+                    <div style = "background-color:#eee;padding:5px;border-radius:5px;border-style:solid;border-width:1px; border-color:#ccc; overflow-wrap: break-word;">
+                    {{ obSignIn.signature64.substr(0,150)  + '...'}}
+                    </div>
+                  </div>
+
+                  <li>• The service validates your signature.</li>
+                  <li>• If it matches the public key on record, then your identity is valid. </li>
+                  <li>• Previous sessions are logged out and a new session begins. </li>
+                  <li>• <i class="fas fa-arrow-circle-left"></i> A JSON Web Token (JWT) is passed back to your browser providing you access to the service for the duration of the session.</li>
+                 
+                  <div v-if = "obSignIn.jwtDecoded"> 
+                    <label style = "font-size:.8em;font-weight:600; color:#622;">This your JWT.<br/></label>
+
+                    <label style = "font-size:.8em;font-weight:600; color:#622;">JWT Header.<br/></label>
+                    <div style = "background-color:#eee;padding:5px;border-radius:5px;border-style:solid;border-width:1px; border-color:#ccc; overflow-wrap: break-word;">
+                    {{ obSignIn.jwtDecoded.header}}
+                    </div>
+
+                    <label style = "font-size:.8em;font-weight:600; color:#622;">JWT Payload.<br/></label>
+                    <div style = "background-color:#eee;padding:5px;border-radius:5px;border-style:solid;border-width:1px; border-color:#ccc; overflow-wrap: break-word;">
+                    {{ obSignIn.jwtDecoded.payload}}
+                    </div>
+
+                    <label style = "font-size:.8em;font-weight:600; color:#622;">JWT Signature (signed by service - truncated).<br/></label>
+                    <div style = "background-color:#eee;padding:5px;border-radius:5px;border-style:solid;border-width:1px; border-color:#ccc; overflow-wrap: break-word;">
+                    {{ obSignIn.jwtDecoded.signature.substr(0,150).replace(/\n/g, '')  + '...'}}
+                    </div>
+
+                  </div>
+                  <div v-if = "obSignIn.jwtDecoded"> 
+                    <br/>
+                    <li style = "font-weight:600">•You're signed in!</li>
+                  </div>
+
+
+                </ul>
+                
+                </p>
+
+               
+                
+              
+            
+            </div>
+          </div>
+        </div>
+      </section>  
+      
+      
+
+
+      <section id = "test" data-section-id="14" data-component-id="29e6_12_04_awz" data-category="sign-in" class="section">
+        <div class="container">
+          <div class="columns  is-8">
+
+
+            <template v-if = "testJwt.code == -1">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Error in your request</h4>
+                <p>{{testJwt.message}}</p>
+                </div>
+            </template>
+
+
+            <template v-if = "claimResult.code == 0">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Run a test command.</h4>
+              
+                  <div class="field">
+                    <div class="control">
+                      <button @click = "runJwtTest('poem')" class="button is-primary is-fullwidth" data-config-id="signin">Show Me a Poem</button>
+                      <button @click = "runJwtTest('song')" class="button is-primary is-fullwidth" data-config-id="signin">Play me a Song</button>
+                    </div>
+                  </div>
+              </div>
+            </template>
+
+            
+            <template v-if = "claimResult.code == 1">
+              <div class="column is-5 is-offset-1">
+                <h4 class="title is-4" data-config-id="header1">Success!</h4>
+                <p> You've received a message from the service.</p>
+               
+                <!-- Create Poem-->
+                {{jwtTest.response}}
+
+                <div class="field  ">
+                <div class="control">
+                  <button @click = "runJwtTest('poem')" class="button is-primary" type="submit">Get Another Poem</button>
+                </div>
+              </div>
+            </template>
+
+            <div class="column is-6">
+              <!-- <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_safe_bnk7.svg" alt=""></figure>               -->
+             
+              <p class="subtitle" data-config-id="description">
+                <b>Simple JWT-enabled Sessions</b>
+                <br/><br/>
+                How it works:
+                <ul class="block">
+                  <li>• The JWT for your session provides authentication (you are who you claimed in the previous step). It also has 'claims' which are the things you are authorized to do on the system. </li>
+                  <li>• Each call to the service sends the JWT along.</li>
+                  <li>• The JWT is revalidated each time to ensure you didn't try to modify it. It uses cryptography to validate the signature.</li>
+                  <li>• If your JWT is invalid, then the request is rejected. Run this test without a JWT and you'll get an error. </li>
+                  <li>• If your JWT is valid, then the request is approved. You will get a response based on your claims. </li>
+                  <li>• If your implementation uses cookies, the JWT can be saved locally so your session will persist even if you refresh your window. </li>
+                  <li>• If your implementation is a Single Page Application (Vue, Angular, React), the JWT can be placed in a store so it is preserved as you navigate from page to page.</li>
+                  <li>• The JWT needs to be reviewed every so often so it doesn't expire in the middle of a session.</li>
+<br/>
+
+                </ul>
+                
+                </p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+    </div>
+
+
+
+
+
+
+<footer data-section-id="19" data-component-id="29e6_11_10_awz" data-category="footers" class="footer">
+  <div class="container has-text-centered">
+    <div class="level">
+      <div class="level-item">
+        <figure class="image is-48x48"><img src="img/paxxageLogo.svg" alt="" data-config-id="image"></figure>
+      </div>
+    </div>
+    <div class="columns  is-8">
+ 
+
+  
+      <div class="column is-6 is-offset-3">
+        <h2 class="title is-4"><a href="#" data-config-id="brand">Paxxage.com</a></h2>
+        <p class="block" data-config-id="description">Paxxage is part of the Symaiotics platform.</p>
+        <p class="block" data-config-id="description">info@symaiotics.com</p>
+      </div>
+    </div>
+  
+  </div>
+</footer>
+
+
+
+
+    </div>
+  </div> <!-- End of Vue App-->
+  </body>
+
+  <script src="./js/lib/forge.min.js"></script>
+  <script src="./js/vue@2.6.11.js"></script>
+  <script src="./js/axios@0.19.2.min.js"></script> <!-- Library for API calls -->
+
+
+  <script>
+  </script>
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+
+      //Alias Management
+      alias:"",
+      publicKey:"",
+      claimResult:{code:0, message:""},
+      
+      //Sign In Management
+      obSignIn : {privateKey:"-----BEGIN RSA PRIVATE KEY-----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-----END RSA PRIVATE KEY-----",
+      password:"", 
+      alias:"238.disobedient.clans",  
+      requestToken:"", 
+      signature64:"",  
+      result:{code:0, message:""}, 
+      jwt:null,
+      jwtDecoded:null,
+    },
+
+    testJwt:
+    {
+      code:0,
+      message:"",
+
+    }
+      
+       
+    },
+
+    mounted()
+    {
+
+
+      this.getAlias();
+
+      //check cookies for a JWT
+      var jwtObj = JSON.parse(localStorage.getItem('jwtObj'));
+      console.log(jwtObj)
+      if (jwtObj)
+      {
+        this.obSignIn.jwt = jwtObj.jwt;
+        this.obSignIn.jwtDecoded = jwtObj.jwtDecoded;
+
+      }
+    },
+    methods: {
+ 
+      getAlias()
+      {
+        
+        axios.get( '/signin/alias')
+        .then((response) => {
+          if(response.data) this.alias = response.data.alias;
+          this.claimResult.code=0;
+          console.log(response.data.alias)
+          })
+      },
+
+      claimAlias()
+      {
+        var postPayload = {alias:this.alias, publicKey:this.publicKey}
+        axios.post( '/signin/claim', postPayload)
+        .then((response) => {
+
+          this.claimResult = response.data;
+           if(this.claimResult.code == -1)
+           {
+             setTimeout(()=>{
+
+              this.getAlias();
+               
+             },4000)
+           }
+
+          })
+      },
+ 
+      signInService()
+      {
+
+        //get a requestToken. Provide your alias
+        axios.get( '/signin/requestToken/' + this.obSignIn.alias)
+        .then((getResponse) => {
+
+        //get the token
+          this.obSignIn.requestToken = getResponse.data.requestToken;
+          
+        //sign the request token
+          this.obSignIn.signature64 = this.sign(this.obSignIn.requestToken, this.obSignIn.privateKey, this.obSignIn.password);
+
+        //send the signature package to the server for verification
+          //We cannot trust the alias from the client side. The server retained this so it is not resent
+          //We are only sharing what can be validated. The requestToken and the signature. 
+          //We will use the requestToken to find the alias. 
+          //We will use the alias to find the publicKey
+          //We will validate the signature with the public key
+          //If that works, we will add the signature to the Session and generate a JWT
+          var postPayload = {
+            requestToken : this.obSignIn.requestToken,
+            signature64 : this.obSignIn.signature64,
+          };
+
+        //receive the JWT if the signature is verified
+          axios.post( '/signin/requestVerification' , postPayload)
+          .then((postResponse) => {
+            this.obSignIn.result.code = postResponse.data.code;
+            this.obSignIn.result.message = postResponse.data.message;
+            this.obSignIn.jwt = postResponse.data.jwt;
+            this.obSignIn.jwtDecoded = postResponse.data.jwtDecoded;
+            console.log("postResponse", postResponse)
+          
+
+//            localStorage.setItem('jwtToken', this.obSignIn.jwt);
+
+          });
+
+
+        })
+
+
+      },
+
+      saveJwt()
+      {
+        localStorage.setItem('jwtObj', JSON.stringify({jwt:this.obSignIn.jwt, jwtDecoded: this.obSignIn.jwtDecoded}));
+      },
+
+      clearCookies()
+      {
+        localStorage.clear();
+      },
+      
+      sign: function(value, pk, password)
+      {
+
+        var pki = forge.pki;
+        var rsa = forge.pki.rsa;
+
+        //decrypt the password on the PEM is there is one
+        if(pk.includes("ENCRYPTED"))
+          var privateKey = pki.decryptRsaPrivateKey(pk, password);
+        else var privateKey = forge.pki.privateKeyFromPem(pk);
+
+      // sign data using RSASSA-PSS where PSS uses a SHA-1 hash, a SHA-1 based
+      // masking function MGF1, and a 20 byte salt
+        var md = forge.md.sha1.create();
+        md.update(value, 'utf8');
+        var pss = forge.pss.create({
+          md: forge.md.sha1.create(),
+          mgf: forge.mgf.mgf1.create(forge.md.sha1.create()),
+          saltLength: 20
+          // optionally pass 'prng' with a custom PRNG implementation
+          // optionalls pass 'salt' with a forge.util.ByteBuffer w/custom salt
+        });
+        var signature = privateKey.sign(md, pss);
+        var signature64 = forge.util.encode64(signature) //use the signature base64 version https://github.com/digitalbazaar/forge/issues/301
+
+        return signature64;
+         
+        // var signatureFile = {
+        //   originalValue:this.obSign.originalValue, 
+        //   // signature:this.obSign.signature, 
+        //   signature64:this.obSign.signature64};
+
+        // this.download(JSON.stringify(signatureFile), "signature.json", "text/plain");
+
+      },
+
+      runJwtTest(service)
+      {
+      
+        
+        //pass the service quest to the server
+        //you'll notice we are now passing a header
+        //If you look at the node code, you'll see we are also extracting that header on the server side
+        // axios.get( '/signin/sampleService/' +service, { headers: {"Authorization" : `Bearer ${this.obSignIn.jwt}`})
+        // .then((getResponse) => {
+          
+        
+        // });
+
+
+      },
+
+      copyValue(value)
+      {
+        const el = document.createElement("textarea");
+        el.value =value;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+      }
+ 
+
+
+  }
+
+  })
+
+</script>
+  
+  <style>
+a{
+  
+color:#F3904F
+}
+
+.button.is-primary
+{
+background-color:#F3904F;
+}
+ 
+
+.splash-back
+{
+ background: #F3904F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3B4371, #F3904F);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3B4371, #F3904F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+ 
+.hero
+ {
+  color:white;
+
+  }
+
+.hero .title{
+   color:white;
+   font-size:3em
+ }
+
+ .hero  .subtitle
+
+ {
+   color:white;
+ }
+  
+
+
+
+  </style>
+</html>
+

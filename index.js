@@ -1,6 +1,12 @@
 //express and node
 const express = require('express')
 const app = express()
+
+//Helmet to manage the headers that are returned. This helps to eliminate leaky headers.
+const helmet = require('helmet')
+app.use(helmet())
+
+//port or env variable
 var port = process.env.PORT || 3001;
 
 //libraries
@@ -25,8 +31,11 @@ app.listen(port, () => console.log(`Example app listening at http://localhost:${
 //routes and valls
 app.get('/', express.static(path.join(__dirname, '/public')))
 
+//A sample signin page to demonstrate how Paxxage-based signin works
+var signin = require('./routes/signin');
+app.use('/signin/', signin); 
 
-app.get("/users", function(req, res) {
-    res.status(200).send( "Okay, validated")
-  });
+// app.get("/users", function(req, res) {
+//     res.status(200).send( "Okay, validated")
+//   });
 
