@@ -47,7 +47,7 @@
 //This method is optimized potentially by adding the results into a database, but I have left it as a FS operation so you can see the logic
 //get the nouns
     var nouns = fs.readFileSync(path.resolve(__dirname, "../assets/nouns.txt"), 'utf8');
-    var nounArray = nouns.split('\n'); 
+    var nounArray = nouns.split(';'); 
     var nounObjArray = [];
     for(var a = 0; a< nounArray.length;a++)
     {
@@ -58,7 +58,7 @@
 
     //get the adjectives
     var adjectives = fs.readFileSync(path.resolve(__dirname, "../assets/adjectives.txt"), 'utf8');
-    var adjectiveArray = adjectives.toString('utf8').split('\n');  
+    var adjectiveArray = adjectives.split(';');  
     
     console.log(1000 * nounObjArray.length * adjectiveArray.length + " possible aliases available.")
 
@@ -132,6 +132,10 @@
 
  
         }
+        else{
+            res.status(401).send({code:-1, message:"Unauthorized request. Alias could not be found to claim."});
+        }
+
         //receive a public key
         //validate the public key strength / length
         //validate the Alias is present in the system but not already used
