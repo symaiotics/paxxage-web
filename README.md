@@ -13,8 +13,10 @@ This project is part of the Symaiotics platform.
 ## Setup
 
 #### Requirements
-Node.js
- 
+Git
+
+Node.js LTS (I am using 12.16.3)
+
 nodemon (recommended)
 
 #### install
@@ -32,7 +34,7 @@ Access to the MongoDB and the keys are from environmental variables.
 In Windows, you can press the Start key, type 'Path' and hit enter. Click Environmental Variables, and add the following:
 > PAXXAGEDB: mongodb://localhost:27017/paxxage (or whatever connection string you have to the MongoDB)
 
-> PAXXAGEPRIVATE: c:\demo\pem\privateKey.pem (or wherever you've saved them)
+> PAXXAGEPRIVATE: c:\demo\pem\privateKey.pem (or wherever you've saved them. You can also use local paths by updating the Node.js code)
 
 > PAXXAGEPUBLIC: c:\demo\pem\publicKey.pem  
 
