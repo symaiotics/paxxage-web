@@ -10,6 +10,26 @@ There is another repository in the works for the Paxxage Desktop app which is un
 
 This project is part of the Symaiotics platform.
 
+## Setup
+
+#### Requirements
+Node.js 
+nodemon (recommended)
+
+#### install
+> git clone https://github.com/symaiotics/paxxage-web 
+> cd paxxage-web
+> npm install
+> nodemon (or node index.js to start)
+
+#### Environment
+To run this example, you will need to have access to a MongoDB and have private and public key .pem files saved locally on your server.
+Access to the MongoDB and the keys are from environmental variables.
+In Windows, you can press the Start key, type 'Path' and hit enter. Click Environmental Variables, and add the following:
+> PAXXAGEDB: mongodb://localhost:27017/paxxage (or whatever connection string you have to the MongoDB)
+> PAXXAGEPRIVATE: c:\demo\pem\privateKey.pem (or wherever you've saved them)
+> PAXXAGEPUBLIC: c:\demo\pem\publicKey.pem  
+
 ## Libraries
 #### Forge
 This project adapts the Forge encryption library.
