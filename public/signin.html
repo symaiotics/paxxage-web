@@ -232,15 +232,15 @@
                 <h4 class="title is-4" data-config-id="header1">Success!</h4>
                 <p> You've successfully signed in.</p>
                 <p> You now have an access token called a JWT which will provide you access to this service for the rest of your session.</p>
-                <p> You can optionally save this JWT to a <a href = "https://www.w3schools.com/jsref/prop_win_localstorage.asp"> cookie </a>. This will preserve the token even if you refresh the page.</p>
 
-                <button @click = "saveJwt" class="button is-primary is-fullwidth" data-config-id="signin">Save the JWT to a cookie</button><br/>
-                <button @click = "clearCookies" class="button is-primary is-fullwidth" data-config-id="signin">Clear all cookies</button>
+                <!-- Optional code to save the JWT as a cookie. Disabled by default-->
+                  <!-- <p> You can optionally save this JWT to a <a href = "https://www.w3schools.com/jsref/prop_win_localstorage.asp"> cookie </a>. This will preserve the token even if you refresh the page.</p>
+                  <button @click = "saveJwt" class="button is-primary is-fullwidth" data-config-id="signin">Save the JWT to a cookie</button><br/>
+                  <button @click = "clearCookies" class="button is-primary is-fullwidth" data-config-id="signin">Clear all cookies</button> -->
           
             </template>
 
             <div class="column is-6">
-              <!-- <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_safe_bnk7.svg" alt=""></figure>               -->
              
               <p class="subtitle" data-config-id="description">
                 <b>Sign In with a Signature</b>
@@ -320,42 +320,55 @@
             <template v-if = "jwtTest.code == -1">
               <div class="column is-5 is-offset-1">
                 <h4 class="title is-4" data-config-id="header1">Error in your request</h4>
-                <p>{{testJwt.message}}</p>
+                <p><b>{{jwtTest.message}}</b></p>
+<br/>
+                <div class="control">
+                  <button @click = "clearJwtTest()" class="button is-primary" type="submit">Do Another Request</button>
+                </div>
+
                 </div>
             </template>
-
 
             <template v-if = "jwtTest.code == 0">
               <div class="column is-5 is-offset-1">
                 <h4 class="title is-4" data-config-id="header1">Run a test command.</h4>
               
+                <div v-if = "obSignIn.jwtDecoded">
+                  <label style = "font-size:.8em;font-weight:600; color:#622;">JWT claims.<br/></label>
+                  <div style = "background-color:#eee;padding:5px;border-radius:5px;border-style:solid;border-width:1px; border-color:#ccc; overflow-wrap: break-word;">
+                    {{ obSignIn.jwtDecoded.payload.features}}
+                  </div>
+                  <p> Here is a special 'features' claim which grants you access to run certain commands.</p>
+                </div>
+
                   <div class="field">
                     <div class="control">
-                      <button @click = "runJwtTest('poem')" class="button is-primary is-fullwidth" data-config-id="signin">Show Me a Poem</button>
+                      <button @click = "runJwtTest('poem')" class="button is-primary is-fullwidth" data-config-id="signin">Show Me a Poem</button><br/>
                       <button @click = "runJwtTest('song')" class="button is-primary is-fullwidth" data-config-id="signin">Play me a Song</button>
                     </div>
                   </div>
               </div>
             </template>
-
             
             <template v-if = "jwtTest.code == 1">
               <div class="column is-5 is-offset-1">
                 <h4 class="title is-4" data-config-id="header1">Success!</h4>
-                <p> You've received a message from the service.</p>
+                <p> You've received a message from the service. Your JWT was valid and your claims were approved. Here is your poem : </p>
+                <br/>
                
                 <!-- Create Poem-->
-                {{jwtTest.response}}
-
+                <b>
+                {{jwtTest.message}}
+                </b>
+                <br/>
                 <div class="field  ">
                 <div class="control">
-                  <button @click = "runJwtTest('poem')" class="button is-primary" type="submit">Get Another Poem</button>
+                  <button @click = "clearJwtTest()" class="button is-primary" type="submit">Do Another Request</button>
                 </div>
               </div>
             </template>
 
             <div class="column is-6">
-              <!-- <figure class="image is-128x128"><img class="is-rounded" src="img/undraw_safe_bnk7.svg" alt=""></figure>               -->
              
               <p class="subtitle" data-config-id="description">
                 <b>Simple JWT-enabled Sessions</b>
@@ -367,11 +380,11 @@
                   <li>• The JWT is revalidated each time to ensure you didn't try to modify it. It uses cryptography to validate the signature.</li>
                   <li>• If your JWT is invalid, then the request is rejected. Run this test without a JWT and you'll get an error. </li>
                   <li>• If your JWT is valid, then the request is approved. You will get a response based on your claims. </li>
-                  <li>• If your implementation uses cookies, the JWT can be saved locally so your session will persist even if you refresh your window. </li>
+                  <!-- Optional cookies information -->
+                  <!-- <li>• If your implementation uses cookies, the JWT can be saved locally so your session will persist even if you refresh your window. </li>
                   <li>• If your implementation is a Single Page Application (Vue, Angular, React), the JWT can be placed in a store so it is preserved as you navigate from page to page.</li>
-                  <li>• The JWT needs to be reviewed every so often so it doesn't expire in the middle of a session.</li>
-<br/>
-
+                  <li>• The JWT needs to be reviewed every so often so it doesn't expire in the middle of a session.</li> -->
+          
                 </ul>
                 
                 </p>
@@ -465,18 +478,20 @@
 
       this.getAlias();
 
-      //check cookies for a JWT
-      var jwtObj = JSON.parse(localStorage.getItem('jwtObj'));
-      console.log(jwtObj)
-      if (jwtObj)
-      {
-        this.obSignIn.jwt = jwtObj.jwt;
-        this.obSignIn.jwtDecoded = jwtObj.jwtDecoded;
+    //Optional code for recalling the jwt from cookies
+      // //check cookies for a JWT
+      // var jwtObj = JSON.parse(localStorage.getItem('jwtObj'));
+      // console.log(jwtObj)
+      // if (jwtObj)
+      // {
+      //   this.obSignIn.jwt = jwtObj.jwt;
+      //   this.obSignIn.jwtDecoded = jwtObj.jwtDecoded;
+      // }
 
-      }
     },
     methods: {
  
+      //get a brand new shiny alias
       getAlias()
       {
         
@@ -488,6 +503,7 @@
           })
       },
 
+      //claim this alias by providing a public key.
       claimAlias()
       {
         var postPayload = {alias:this.alias, publicKey:this.publicKey}
@@ -506,7 +522,15 @@
 
           })
       },
- 
+
+    //send the signature package to the server for verification
+      //We cannot trust the alias from the client side. The server retained this so it is not resent
+      //We are only sharing what can be validated. The requestToken and the signature. 
+      //We will use the requestToken to find the alias. 
+      //We will use the alias to find the publicKey
+      //We will validate the signature with the public key
+      //If that works, we will add the signature to the Session and generate a JWT
+
       signInService()
       {
 
@@ -520,13 +544,6 @@
         //sign the request token
           this.obSignIn.signature64 = this.sign(this.obSignIn.requestToken, this.obSignIn.privateKey, this.obSignIn.password);
 
-        //send the signature package to the server for verification
-          //We cannot trust the alias from the client side. The server retained this so it is not resent
-          //We are only sharing what can be validated. The requestToken and the signature. 
-          //We will use the requestToken to find the alias. 
-          //We will use the alias to find the publicKey
-          //We will validate the signature with the public key
-          //If that works, we will add the signature to the Session and generate a JWT
           var postPayload = {
             requestToken : this.obSignIn.requestToken,
             signature64 : this.obSignIn.signature64,
@@ -540,9 +557,6 @@
             this.obSignIn.jwt = postResponse.data.jwt;
             this.obSignIn.jwtDecoded = postResponse.data.jwtDecoded;
             console.log("postResponse", postResponse)
-          
-
-//            localStorage.setItem('jwtToken', this.obSignIn.jwt);
 
           });
 
@@ -552,15 +566,17 @@
 
       },
 
-      saveJwt()
-      {
-        localStorage.setItem('jwtObj', JSON.stringify({jwt:this.obSignIn.jwt, jwtDecoded: this.obSignIn.jwtDecoded}));
-      },
+      // //optional command to save the JWT to a cookie.
+      // saveJwt()
+      // {
+      //   localStorage.setItem('jwtObj', JSON.stringify({jwt:this.obSignIn.jwt, jwtDecoded: this.obSignIn.jwtDecoded}));
+      // },
 
-      clearCookies()
-      {
-        localStorage.clear();
-      },
+      // //optional command to clear cookies
+      // clearCookies()
+      // {
+      //   localStorage.clear();
+      // },
       
       sign: function(value, pk, password)
       {
@@ -600,8 +616,31 @@
 
       runJwtTest(service)
       {
-      
-        
+        const config = {
+        headers: { Authorization: `Bearer ${this.obSignIn.jwt}` }
+        };
+
+        try
+        {
+
+          //receive the JWT if the signature is verified
+          axios.get( '/signin/verify/' + service , config)
+          .then((getResponse) => {
+            console.log("Here is the response", getResponse)
+            this.jwtTest.code = getResponse.data.code;
+            this.jwtTest.message = getResponse.data.message;
+
+          })
+          .catch( (error) => {
+            //console.log(error.response.status)
+            this.jwtTest.code = -1;
+            this.jwtTest.message = "Error  " + error.response.status + ". " + error.response.data.message;
+          })
+        }
+        catch(error)
+        {
+          //do nothing
+        }
         //pass the service quest to the server
         //you'll notice we are now passing a header
         //If you look at the node code, you'll see we are also extracting that header on the server side
@@ -612,6 +651,12 @@
         // });
 
 
+      },
+
+      clearJwtTest()
+      {
+        this.jwtTest.code = 0;
+        this.jwtTest.message = "";
       },
 
       copyValue(value)

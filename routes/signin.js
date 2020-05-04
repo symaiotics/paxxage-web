@@ -22,6 +22,21 @@
     const paxxagePublicPem =  fs.readFileSync(process.env.PAXXAGEPUBLIC, 'utf8')
     console.log("Loaded the encryption keys for this paxxage service")
 
+
+//Load the middleware
+    const verify = require("../middleware/verify"); //the middlware for verification.
+    //other desirable middleware might be
+    /*
+        -rate limiting
+        -logging
+        -audit
+        -delegation functions
+        -a more detailed claims management system
+        -a roles-based acess assessment
+    */
+
+
+
 //We will be using JSON Web Tokens (JWT) once the session is validated for all future interactions
 //A piece of custom middleware will be introduced to valiate the JWT on every call after signin to ensure the session is valid
     var jwt = require('jsonwebtoken');
@@ -216,8 +231,8 @@
                      alias: verifySession[0].alias,
                      exp: new Date().getTime() + (3*60*1000), //3 hours.  Need a mechanism for renewing the JWT to update the expiry. This might go to the database though 
                      iat: momentVerified.getTime(), //issue time
-                     nbf: momentVerified.getTime() - (5*1000), //dont allow anyone to call it 5 minutes in the past
-                     features:["poems"],
+                     //nbf: momentVerified.getTime() - (5*1000), //dont allow anyone to call it 5 minutes in the past
+                     features:["poem"],
 
                     }, paxxagePrivatePem, { algorithm: 'RS256'});
                 var decoded = jwt.decode(token, {complete: true});
@@ -239,26 +254,31 @@
     });
 
 
+    //verifies your JWT is valid, assesses your claims, and returns a service
+    router.get('/verify/:service?', verify.session, function (req, res, next) {
 
-//TODOs
-//Additional testing calls
-router.post('/verify', function (req, res, next) {
+        //this time the middleware was included ^
+        //If the JWT is valid, then the middleware passes the function on with a next.
+        //Otherwise a 401 Unauth is passed back and the request ends.
+        console.log(req.features)
+        var service = req.params.service;
+        if(req.features.indexOf(service) > -1)
+        {
+            var poem = "Roses are " + adjectiveArray[getRandomInt(adjectiveArray.length-1)] + ", violets are " + adjectiveArray[getRandomInt(adjectiveArray.length-1)] + ", I love " + adjectiveArray[getRandomInt(adjectiveArray.length-1)] + " " + nounObjArray[getRandomInt(nounObjArray.length-1)].plural + " and you do too!";
+            res.status(200).send( {code:1, message:poem});
+        }
+        else
+        {
+            res.status(200).send( {code:-1, message:"The JWT is successful but you do NOT have claims to use this service. You cannot have a " + service});
+        }
+        
+    });
 
-    //alias, time, and signature of the alias and time are required
-    //use the PAXXAGEPUBLIC key to verify whether the JWT is valid.
-    res.status(200).send( "Sample call successful");
-});
-
-//Performs a sample task using the JWT middleware to verify the session is valid
-//In this demo this is called once before the signOut to validate it is working and once after the signOut to return a non-working response
-router.post('/sampleRequest', function (req, res, next) {
-    res.status(200).send( "Sample call successful");
-});
-
-//Sign out destroys the JWT token and invalidates the session
-router.post('/signOut', function (req, res, next) {
-    res.status(200).send( "Session destroyed");
-});
+    //TODO implement a simple signout function.
+    //Sign out destroys the JWT token and invalidates the session
+    router.post('/signOut', function (req, res, next) {
+        res.status(200).send( "Session destroyed");
+    });
 
 
 
