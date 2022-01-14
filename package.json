@@ -21,6 +21,6 @@
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.14",
-    "node-forge": "^0.10.0"
+    "node-forge": "^1.0.0"
   }
 }
